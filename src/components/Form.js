@@ -1,16 +1,15 @@
 import React, { useState } from "react";
+// prop-types is a library for typechecking of props
+import PropTypes from "prop-types";
 
 const Form = ({ handleSubmit, history }) => {
   const [searchEntry, setSearchEntry] = useState("");
   // update search text state
-  const updateSearchInput = e => {
+  const updateSearchInput = (e) => {
     setSearchEntry(e.target.value);
   };
   return (
-    <form
-      className="search-form"
-      onSubmit={e => handleSubmit(e, history, searchEntry)}
-    >
+    <form className="search-form" onSubmit={(e) => handleSubmit(e, history, searchEntry)}>
       <input
         type="text"
         name="search"
@@ -34,5 +33,8 @@ const Form = ({ handleSubmit, history }) => {
     </form>
   );
 };
-
+Form.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  history: PropTypes.instanceOf(Object).isRequired,
+};
 export default Form;
